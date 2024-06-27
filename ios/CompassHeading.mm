@@ -53,7 +53,7 @@ RCT_EXPORT_MODULE()
     }
     
     dispatch_sync(dispatch_get_main_queue(), ^{
-        NSInteger heading = newHeading.trueHeading;
+        Double heading = newHeading.trueHeading;
         
         // if the device supports UI rotation, we need to adjust
         // our heading value since it will default to
