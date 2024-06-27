@@ -53,7 +53,7 @@ RCT_EXPORT_MODULE()
     }
     
     dispatch_sync(dispatch_get_main_queue(), ^{
-        Double heading = newHeading.trueHeading;
+        double heading = newHeading.trueHeading;
         
         // if the device supports UI rotation, we need to adjust
         // our heading value since it will default to
@@ -61,18 +61,19 @@ RCT_EXPORT_MODULE()
         UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
         
         if(interfaceOrientation == UIInterfaceOrientationLandscapeLeft){
-            heading = (heading + 270) % 360;
+            heading = fmod(heading + 270, 360);
         }
         else if(interfaceOrientation == UIInterfaceOrientationLandscapeRight){
-            heading = (heading + 90) % 360;
+            heading = fmod(heading + 90, 360);
         }
         else if(interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
-            heading = (heading + 180) % 360;
+            heading = fmod(heading + 180, 360);
         }
+
+        NSLog(@"Heading: %f", heading);
         
         if(isObserving){
             [self sendEventWithName:kHeadingUpdated body:@{
-                @"rawHeading": @(123.4),
                 @"heading": @(heading),
                 @"accuracy": @(newHeading.headingAccuracy)
             }];
