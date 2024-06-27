@@ -72,7 +72,7 @@ RCT_EXPORT_MODULE()
         
         if(isObserving){
             [self sendEventWithName:kHeadingUpdated body:@{
-                @"rawHeading: @(123.4)
+                @"rawHeading: @(123.4),
                 @"heading": @(heading),
                 @"accuracy": @(newHeading.headingAccuracy)
             }];
