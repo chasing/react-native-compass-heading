@@ -69,8 +69,6 @@ RCT_EXPORT_MODULE()
         else if(interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
             heading = fmod(heading + 180, 360);
         }
-
-        NSLog(@"Heading: %f", heading);
         
         if(isObserving){
             [self sendEventWithName:kHeadingUpdated body:@{
